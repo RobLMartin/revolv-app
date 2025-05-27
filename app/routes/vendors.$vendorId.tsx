@@ -1,10 +1,15 @@
-import { json, redirect, type ActionFunctionArgs, type LoaderFunctionArgs } from "react-router";
+import {
+  redirect,
+  type ActionFunctionArgs,
+  type LoaderFunctionArgs,
+} from "react-router";
 import { useLoaderData, Form } from "react-router";
 import type { Route } from "./+types/vendors.$vendorId";
 import { Card } from "../components/ui/card";
 import { Button } from "../components/ui/button";
+import { json } from "node:stream/consumers";
 
-interface Record {
+interface RecordType {
   id: string;
   title: string;
   artist: string;
@@ -16,7 +21,7 @@ interface Vendor {
   id: string;
   name: string;
   description: string;
-  records: Record[];
+  records: RecordType[];
 }
 
 const vendors: Record<string, Vendor> = {
@@ -55,25 +60,18 @@ export async function loader({ params }: LoaderFunctionArgs) {
   if (!vendor) {
     throw new Response("Not Found", { status: 404 });
   }
-  return json({ vendor });
+  return { vendor };
 }
 
 export async function action({ request, params }: ActionFunctionArgs) {
   const formData = await request.formData();
   const recordId = formData.get("recordId");
   if (typeof recordId !== "string") {
-    return json({ error: "Invalid" }, { status: 400 });
+    return { error: "Invalid" };
   }
   // Normally we'd update the database here
   console.log(`Vendor ${params.vendorId} - liked record ${recordId}`);
   return redirect(`./${params.vendorId}?liked=${recordId}`);
-}
-
-export function meta({ data }: Route.MetaArgs) {
-  return [
-    { title: data.vendor.name },
-    { name: "description", content: data.vendor.description },
-  ];
 }
 
 export default function VendorStorefront() {
@@ -88,7 +86,10 @@ export default function VendorStorefront() {
       </header>
       <section className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-6">
         {vendor.records.map((record) => (
-          <Card key={record.id} className="flex flex-col items-center text-center gap-4">
+          <Card
+            key={record.id}
+            className="flex flex-col items-center text-center gap-4"
+          >
             <img
               src={record.cover}
               alt={record.title}

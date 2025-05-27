@@ -5,13 +5,13 @@ export type Vinyl = {
   year: number;
 };
 
-export type BuyerProfile = {
+export type BuyerProfileType = {
   name: string;
   bio: string;
   collection: Vinyl[];
 };
 
-const defaultProfile: BuyerProfile = {
+const defaultProfile: BuyerProfileType = {
   name: "Vinyl Aficionado",
   bio: "A lover of all things analog.",
   collection: [
@@ -20,13 +20,13 @@ const defaultProfile: BuyerProfile = {
   ],
 };
 
-let profile: BuyerProfile = { ...defaultProfile };
+let profile: BuyerProfileType = { ...defaultProfile };
 
 export async function getProfile() {
   return profile;
 }
 
-export async function updateProfile(data: Partial<BuyerProfile>) {
+export async function updateProfile(data: Partial<BuyerProfileType>) {
   profile = { ...profile, ...data };
 }
 

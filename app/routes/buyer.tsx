@@ -1,18 +1,18 @@
-import { Form, useLoaderData, redirect, json } from "react-router";
+import { Form, useLoaderData, redirect } from "react-router";
 import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
 import {
   getProfile,
   updateProfile,
   addVinyl,
   expressInterest,
-  BuyerProfile,
+  type BuyerProfileType,
 } from "../data/store";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 
 export async function loader(_args: LoaderFunctionArgs) {
   const profile = await getProfile();
-  return json(profile);
+  return profile;
 }
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -38,14 +38,14 @@ export async function action({ request }: ActionFunctionArgs) {
     const vinylId = formData.get("vinylId") as string;
     const yourName = (formData.get("yourName") as string) || "Anonymous";
     await expressInterest(vinylId, yourName);
-    return json({ ok: true });
+    return { ok: true };
   }
 
   return null;
 }
 
-export default function BuyerProfile() {
-  const profile = useLoaderData() as BuyerProfile;
+export default function BuyerProfilePage() {
+  const profile = useLoaderData() as BuyerProfileType;
 
   return (
     <div className="container mx-auto space-y-8 p-4">

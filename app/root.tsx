@@ -7,6 +7,7 @@ import {
   ScrollRestoration,
   Link,
 } from "react-router";
+import { ClerkProvider } from "@clerk/clerk-react";
 
 import type { Route } from "./+types/root";
 import "./app.css";
@@ -55,7 +56,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <ClerkProvider publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}>
+      <Outlet />
+    </ClerkProvider>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

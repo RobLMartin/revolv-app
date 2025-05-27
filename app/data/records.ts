@@ -1,31 +1,37 @@
-export interface RecordData {
-  id: string;
+export interface Record {
+  id: number;
   title: string;
   artist: string;
-  price: number;
   cover: string;
 }
 
-export const records: RecordData[] = [
+export const records: Record[] = [
   {
-    id: '1',
-    title: 'Revolver',
-    artist: 'The Beatles',
-    price: 19.99,
-    cover: 'https://via.placeholder.com/150',
+    id: 1,
+    title: "Kind of Blue",
+    artist: "Miles Davis",
+    price: 15.5,
+    cover: "https://placehold.co/300x300?text=Kind+of+Blue",
   },
   {
-    id: '2',
-    title: 'Back in Black',
-    artist: 'AC/DC',
-    price: 17.5,
-    cover: 'https://via.placeholder.com/150',
+    id: 2,
+    title: "Abbey Road",
+    artist: "The Beatles",
+    price: 15.5,
+    cover: "https://placehold.co/300x300?text=Abbey+Road",
   },
   {
-    id: '3',
-    title: 'Thriller',
-    artist: 'Michael Jackson',
-    price: 21.0,
-    cover: 'https://via.placeholder.com/150',
+    id: 3,
+    title: "Back to Black",
+    artist: "Amy Winehouse",
+    price: 15.5,
+    cover: "https://placehold.co/300x300?text=Back+to+Black",
+  },
+  {
+    id: 4,
+    title: "Dark Side of the Moon",
+    artist: "Pink Floyd",
+    price: 15.5,
+    cover: "https://placehold.co/300x300?text=Dark+Side+of+the+Moon",
   },
 ];

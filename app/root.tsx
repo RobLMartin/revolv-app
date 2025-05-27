@@ -5,7 +5,9 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  Link,
 } from "react-router";
+import { ClerkProvider } from "@clerk/clerk-react";
 
 import type { Route } from "./+types/root";
 import "./app.css";
@@ -33,7 +35,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <header className="border-b">
+          <nav className="container mx-auto flex gap-4 p-4">
+            <Link to="/records" className="underline">
+              Records
+            </Link>
+            <Link to="/cart" className="underline">
+              Cart
+            </Link>
+          </nav>
+        </header>
+        <div className="min-h-screen">
+          {children}
+        </div>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -42,7 +56,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <ClerkProvider publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}>
+      <Outlet />
+    </ClerkProvider>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

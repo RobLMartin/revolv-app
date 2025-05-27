@@ -31,15 +31,18 @@ export default function Cart() {
   const items = useLoaderData() as Route.LoaderData;
   const total = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
   return (
-    <main className="container mx-auto p-4 space-y-4">
-      <h1 className="text-2xl font-bold mb-4">Your Cart</h1>
+    <main className="container max-w-4xl space-y-6 py-8">
+      <h1 className="text-3xl font-bold tracking-tight">Your Cart</h1>
       {items.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
         <>
           <ul className="space-y-2">
             {items.map((item) => (
-              <li key={item.id} className="border rounded p-4 flex items-center justify-between">
+              <li
+                key={item.id}
+                className="flex items-center justify-between rounded-md border bg-white p-4 shadow"
+              >
                 <div>
                   <p className="font-semibold">{item.title}</p>
                   <p className="text-sm text-gray-500">Qty: {item.quantity}</p>

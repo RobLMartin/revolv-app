@@ -77,7 +77,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
 export default function VendorStorefront() {
   const { vendor } = useLoaderData() as { vendor: Vendor };
   return (
-    <main className="container mx-auto px-4 py-10 space-y-8">
+    <main className="container max-w-6xl space-y-8 py-10">
       <header className="space-y-2 text-center">
         <h1 className="text-3xl font-bold tracking-tight">{vendor.name}</h1>
         <p className="text-gray-600 dark:text-gray-300 mx-auto max-w-xl">
@@ -88,7 +88,7 @@ export default function VendorStorefront() {
         {vendor.records.map((record) => (
           <Card
             key={record.id}
-            className="flex flex-col items-center text-center gap-4"
+            className="flex flex-col items-center gap-4 bg-white text-center shadow"
           >
             <img
               src={record.cover}

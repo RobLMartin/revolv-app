@@ -10,12 +10,12 @@ export function loader() {
 export default function Records() {
   const data = useLoaderData() as Route.LoaderData;
   return (
-    <main className="container mx-auto p-4 space-y-4">
-      <h1 className="text-2xl font-bold mb-4">Records</h1>
-      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <main className="container max-w-6xl space-y-6 py-8">
+      <h1 className="text-3xl font-bold tracking-tight">Records</h1>
+      <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
         {data.map((record) => (
-          <li key={record.id} className="border rounded-lg p-4 space-y-2">
-            <img src={record.cover} alt={record.title} className="w-full" />
+          <li key={record.id} className="space-y-2 rounded-lg border bg-white p-4 shadow">
+            <img src={record.cover} alt={record.title} className="w-full rounded-md" />
             <h2 className="font-semibold">{record.title}</h2>
             <p className="text-sm text-gray-500">{record.artist}</p>
             <p className="font-medium">${record.price.toFixed(2)}</p>

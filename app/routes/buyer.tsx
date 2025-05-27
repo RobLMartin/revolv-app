@@ -48,10 +48,10 @@ export default function BuyerProfilePage() {
   const profile = useLoaderData() as BuyerProfileType;
 
   return (
-    <div className="container mx-auto space-y-8 p-4">
-      <h1 className="text-3xl font-bold">Buyer Profile</h1>
+    <div className="container max-w-4xl space-y-8 py-8">
+      <h1 className="text-3xl font-bold tracking-tight">Buyer Profile</h1>
 
-      <Form method="post" className="space-y-4 rounded-md border p-4">
+      <Form method="post" className="space-y-4 rounded-md border bg-white p-4 shadow">
         <input type="hidden" name="intent" value="update-profile" />
         <div className="space-y-2">
           <label className="block text-sm font-medium" htmlFor="name">
@@ -72,7 +72,7 @@ export default function BuyerProfilePage() {
         <h2 className="text-2xl font-semibold">Collection</h2>
         <ul className="space-y-4">
           {profile.collection.map((v) => (
-            <li key={v.id} className="rounded-md border p-4 space-y-2">
+            <li key={v.id} className="rounded-md border bg-white p-4 shadow space-y-2">
               <p className="font-medium">
                 {v.title} - {v.artist} ({v.year})
               </p>
@@ -90,7 +90,7 @@ export default function BuyerProfilePage() {
           ))}
         </ul>
 
-        <Form method="post" className="mt-8 space-y-4 rounded-md border p-4">
+        <Form method="post" className="mt-8 space-y-4 rounded-md border bg-white p-4 shadow">
           <input type="hidden" name="intent" value="add-vinyl" />
           <h3 className="text-lg font-medium">Add Vinyl</h3>
           <div className="space-y-2">

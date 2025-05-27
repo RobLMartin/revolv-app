@@ -35,14 +35,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <header className="border-b">
-          <nav className="container mx-auto flex gap-4 p-4">
-            <Link to="/records" className="underline">
-              Records
+        <header className="border-b bg-white/80 backdrop-blur">
+          <nav className="container flex h-14 items-center justify-between">
+            <Link to="/" className="text-lg font-bold tracking-tight">
+              Revolv
             </Link>
-            <Link to="/cart" className="underline">
-              Cart
-            </Link>
+            <div className="flex items-center gap-6">
+              <Link to="/records" className="font-medium hover:text-blue-600">
+                Records
+              </Link>
+              <Link to="/cart" className="font-medium hover:text-blue-600">
+                Cart
+              </Link>
+            </div>
           </nav>
         </header>
         <div className="min-h-screen">
@@ -80,7 +85,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
+    <main className="container max-w-4xl space-y-4 py-16">
       <h1>{message}</h1>
       <p>{details}</p>
       {stack && (

@@ -30,15 +30,15 @@ export default function RecordOffers() {
   const { album, offers } = useLoaderData() as Route.LoaderData;
   const actionData = useActionData() as Route.ActionData | undefined;
   return (
-    <main className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-2">
+    <main className="container max-w-4xl space-y-6 py-8">
+      <h1 className="text-3xl font-bold tracking-tight">
         {album.artist} – {album.title}
       </h1>
-      <p className="mb-6 text-gray-600">
+      <p className="text-gray-600">
         Explore offers from different stores and find the best deal.
       </p>
       <div className="overflow-x-auto">
-        <table className="w-full text-sm">
+        <table className="w-full text-sm rounded-md border shadow">
           <thead className="bg-gray-50">
             <tr>
               <th className="px-4 py-2 text-left">Store</th>

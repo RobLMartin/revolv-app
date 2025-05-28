@@ -2,6 +2,7 @@ import { Form, useLoaderData } from "react-router";
 import type { Route } from "./+types/records";
 import { records } from "~/data/records";
 import { Button } from "~/components/ui/button";
+import { Card } from "~/ui/card";
 
 export function loader() {
   return records;
@@ -14,7 +15,7 @@ export default function Records() {
       <h1 className="text-3xl font-bold tracking-tight">Records</h1>
       <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
         {data.map((record) => (
-          <li key={record.id} className="space-y-2 rounded-lg border bg-white p-4 shadow">
+          <Card key={record.id} className="space-y-2">
             <img src={record.cover} alt={record.title} className="w-full rounded-md" />
             <h2 className="font-semibold">{record.title}</h2>
             <p className="text-sm text-gray-500">{record.artist}</p>
@@ -26,7 +27,7 @@ export default function Records() {
                 Add to Cart
               </Button>
             </Form>
-          </li>
+          </Card>
         ))}
       </ul>
     </main>

@@ -5,8 +5,8 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  Link,
 } from "react-router";
+import { Sidebar } from "./components/sidebar";
 import { ClerkProvider } from "@clerk/clerk-react";
 
 import type { Route } from "./+types/root";
@@ -34,24 +34,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
-        <header className="border-b bg-white/80 backdrop-blur">
-          <nav className="container flex h-14 items-center justify-between">
-            <Link to="/" className="text-lg font-bold tracking-tight">
-              Revolv
-            </Link>
-            <div className="flex items-center gap-6">
-              <Link to="/records" className="font-medium hover:text-blue-600">
-                Records
-              </Link>
-              <Link to="/cart" className="font-medium hover:text-blue-600">
-                Cart
-              </Link>
-            </div>
-          </nav>
-        </header>
-        <div className="min-h-screen">
-          {children}
+      <body className="min-h-screen bg-gray-50 font-sans antialiased">
+        <div className="flex min-h-screen">
+          <Sidebar />
+          <div className="flex-1 flex flex-col">
+            <header className="flex h-14 items-center border-b bg-white px-4">
+              <a href="/" className="text-lg font-bold tracking-tight">
+                Revolv
+              </a>
+            </header>
+            <div className="flex-1">{children}</div>
+          </div>
         </div>
         <ScrollRestoration />
         <Scripts />

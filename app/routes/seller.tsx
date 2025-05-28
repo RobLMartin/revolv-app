@@ -52,11 +52,11 @@ export default function Seller() {
         ) : (
           <ul className="space-y-2">
             {records.map((record) => (
-              <li key={record.id} className="rounded-md border bg-white p-4 shadow">
+              <Card key={record.id}>
                 <p className="font-medium">{record.title}</p>
                 <p className="text-sm text-gray-600">${record.price.toFixed(2)}</p>
                 <p className="text-sm text-gray-500">{record.description}</p>
-              </li>
+              </Card>
             ))}
           </ul>
         )}

@@ -7,6 +7,7 @@ import {
   SignOutButton,
 } from "@clerk/clerk-react";
 import { Button } from "../components/ui/button";
+import { Card } from "../ui/card";
 import type { Record } from "../data/records";
 import { records as sampleRecords } from "../data/records";
 
@@ -31,10 +32,7 @@ export default function Home() {
       </h1>
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {records.map((record) => (
-          <div
-            key={record.id}
-            className="space-y-2 text-center rounded-lg border bg-white p-4 shadow"
-          >
+          <Card key={record.id} className="space-y-2 text-center">
             <img
               src={record.cover}
               alt={`${record.title} cover`}
@@ -42,7 +40,7 @@ export default function Home() {
             />
             <p className="font-medium">{record.title}</p>
             <p className="text-sm text-gray-600">{record.artist}</p>
-          </div>
+          </Card>
         ))}
       </div>
       <div className="text-center space-x-4">

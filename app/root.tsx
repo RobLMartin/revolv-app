@@ -7,6 +7,8 @@ import {
   ScrollRestoration,
 } from "react-router";
 import { Sidebar } from "./components/sidebar";
+import { useLocation } from "react-router";
+import { SignedIn, SignOutButton } from "@clerk/clerk-react";
 import { ClerkProvider } from "@clerk/clerk-react";
 
 import type { Route } from "./+types/root";
@@ -26,6 +28,8 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+  const showSidebar = location.pathname.startsWith("/app");
   return (
     <html lang="en">
       <head>
@@ -36,12 +40,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body className="min-h-screen bg-gray-50 font-sans antialiased">
         <div className="flex min-h-screen">
-          <Sidebar />
+          {showSidebar && <Sidebar />}
           <div className="flex-1 flex flex-col">
-            <header className="flex h-14 items-center border-b bg-white px-4">
-              <a href="/" className="text-lg font-bold tracking-tight">
-                Revolv
-              </a>
+            <header className="flex h-14 items-center justify-end border-b bg-white px-4">
+              <SignedIn>
+                <SignOutButton />
+              </SignedIn>
             </header>
             <div className="flex-1">{children}</div>
           </div>

@@ -24,7 +24,7 @@ export async function action({ request }: ActionFunctionArgs) {
     const name = formData.get("name") as string;
     const bio = formData.get("bio") as string;
     await updateProfile({ name, bio });
-    return redirect("/buyer");
+    return redirect("/app/buyer");
   }
 
   if (intent === "add-vinyl") {
@@ -32,7 +32,7 @@ export async function action({ request }: ActionFunctionArgs) {
     const artist = formData.get("artist") as string;
     const year = Number(formData.get("year"));
     await addVinyl({ title, artist, year });
-    return redirect("/buyer");
+    return redirect("/app/buyer");
   }
 
   if (intent === "express-interest") {

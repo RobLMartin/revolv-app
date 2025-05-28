@@ -2,14 +2,15 @@
 import { index, route, type RouteConfig } from "@react-router/dev/routes";
 
 export default [
-  index("routes/home.tsx"),
-  route("vendors/:vendorId", "routes/vendors.$vendorId.tsx"),
-  route("records", "routes/records.tsx"),
-  route("cart", "routes/cart.tsx"),
-  route("records/:slug", "routes/records.$slug.tsx"),
+  index("routes/landing.tsx"),
+  route("app", "routes/home.tsx"),
+  route("app/vendors/:vendorId", "routes/vendors.$vendorId.tsx"),
+  route("app/records", "routes/records.tsx"),
+  route("app/cart", "routes/cart.tsx"),
+  route("app/records/:slug", "routes/records.$slug.tsx"),
   route("signin", "routes/signin.tsx"),
   route("signup", "routes/signup.tsx"),
-  route("seller", "routes/seller.tsx"),
-  route("buyer", "routes/buyer.tsx"),
+  route("app/seller", "routes/seller.tsx"),
+  route("app/buyer", "routes/buyer.tsx"),
 
 ] satisfies RouteConfig;

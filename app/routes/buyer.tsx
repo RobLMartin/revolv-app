@@ -9,6 +9,7 @@ import {
 } from "../data/store";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
+import { Card } from "../ui/card";
 
 export async function loader(_args: LoaderFunctionArgs) {
   const profile = await getProfile();
@@ -51,28 +52,30 @@ export default function BuyerProfilePage() {
     <div className="container max-w-4xl space-y-8 py-8">
       <h1 className="text-3xl font-bold tracking-tight">Buyer Profile</h1>
 
-      <Form method="post" className="space-y-4 rounded-md border bg-white p-4 shadow">
-        <input type="hidden" name="intent" value="update-profile" />
-        <div className="space-y-2">
-          <label className="block text-sm font-medium" htmlFor="name">
-            Name
-          </label>
-          <Input id="name" name="name" defaultValue={profile.name} />
-        </div>
-        <div className="space-y-2">
-          <label className="block text-sm font-medium" htmlFor="bio">
-            Bio
-          </label>
-          <Input id="bio" name="bio" defaultValue={profile.bio} />
-        </div>
-        <Button type="submit">Save Profile</Button>
-      </Form>
+      <Card>
+        <Form method="post" className="space-y-4">
+          <input type="hidden" name="intent" value="update-profile" />
+          <div className="space-y-2">
+            <label className="block text-sm font-medium" htmlFor="name">
+              Name
+            </label>
+            <Input id="name" name="name" defaultValue={profile.name} />
+          </div>
+          <div className="space-y-2">
+            <label className="block text-sm font-medium" htmlFor="bio">
+              Bio
+            </label>
+            <Input id="bio" name="bio" defaultValue={profile.bio} />
+          </div>
+          <Button type="submit">Save Profile</Button>
+        </Form>
+      </Card>
 
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold">Collection</h2>
         <ul className="space-y-4">
           {profile.collection.map((v) => (
-            <li key={v.id} className="rounded-md border bg-white p-4 shadow space-y-2">
+            <Card key={v.id} className="space-y-2">
               <p className="font-medium">
                 {v.title} - {v.artist} ({v.year})
               </p>
@@ -86,13 +89,14 @@ export default function BuyerProfilePage() {
                 />
                 <Button type="submit">I'm Interested</Button>
               </Form>
-            </li>
+            </Card>
           ))}
         </ul>
 
-        <Form method="post" className="mt-8 space-y-4 rounded-md border bg-white p-4 shadow">
-          <input type="hidden" name="intent" value="add-vinyl" />
-          <h3 className="text-lg font-medium">Add Vinyl</h3>
+        <Card className="mt-8 p-4">
+          <Form method="post" className="space-y-4">
+            <input type="hidden" name="intent" value="add-vinyl" />
+            <h3 className="text-lg font-medium">Add Vinyl</h3>
           <div className="space-y-2">
             <label className="block text-sm font-medium" htmlFor="title">
               Title
@@ -111,8 +115,9 @@ export default function BuyerProfilePage() {
             </label>
             <Input id="year" name="year" type="number" required />
           </div>
-          <Button type="submit">Add</Button>
-        </Form>
+            <Button type="submit">Add</Button>
+          </Form>
+        </Card>
       </section>
     </div>
   );

@@ -3,6 +3,7 @@ import type { Route } from "./+types/cart";
 import { getCart, removeFromCart, clearCart, addToCart } from "~/utils/cart";
 import { records } from "~/data/records";
 import { Button } from "~/components/ui/button";
+import { Card } from "~/ui/card";
 
 export function loader() {
   return getCart();
@@ -39,9 +40,9 @@ export default function Cart() {
         <>
           <ul className="space-y-2">
             {items.map((item) => (
-              <li
+              <Card
                 key={item.id}
-                className="flex items-center justify-between rounded-md border bg-white p-4 shadow"
+                className="flex items-center justify-between"
               >
                 <div>
                   <p className="font-semibold">{item.title}</p>
@@ -54,7 +55,7 @@ export default function Cart() {
                     Remove
                   </Button>
                 </Form>
-              </li>
+              </Card>
             ))}
           </ul>
           <div className="text-right font-semibold">Total: ${total.toFixed(2)}</div>

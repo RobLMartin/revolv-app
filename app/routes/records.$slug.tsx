@@ -14,6 +14,10 @@ export async function loader({ params }: Route.LoaderArgs) {
 
 export async function action({ request }: Route.ActionArgs) {
   const formData = await request.formData();
+  const intent = formData.get("intent");
+  if (intent === "wishlist") {
+    return { message: "Added to wishlist" };
+  }
   const store = formData.get("store");
   return { message: `Contacting ${store}` };
 }
@@ -29,6 +33,12 @@ export function meta({ data }: Route.MetaArgs) {
 export default function RecordOffers() {
   const { album, offers } = useLoaderData() as Route.LoaderData;
   const actionData = useActionData() as Route.ActionData | undefined;
+  const tracks = [
+    "Wesley's Theory",
+    "For Free?",
+    "King Kunta",
+    "Institutionalized",
+  ];
   return (
     <main className="container max-w-4xl space-y-6 py-8">
       <h1 className="text-3xl font-bold tracking-tight">
@@ -37,6 +47,19 @@ export default function RecordOffers() {
       <p className="text-gray-600">
         Explore offers from different stores and find the best deal.
       </p>
+
+      <section>
+        <h2 className="font-semibold mb-2">Tracklist</h2>
+        <ol className="list-decimal list-inside space-y-1 text-sm">
+          {tracks.map((t) => (
+            <li key={t}>{t}</li>
+          ))}
+        </ol>
+        <Form method="post" className="mt-4">
+          <input type="hidden" name="intent" value="wishlist" />
+          <Button type="submit">Add to Wishlist</Button>
+        </Form>
+      </section>
       <div className="overflow-x-auto">
         <table className="w-full text-sm rounded-md border shadow">
           <thead className="bg-gray-50">

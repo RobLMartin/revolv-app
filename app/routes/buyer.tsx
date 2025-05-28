@@ -47,6 +47,13 @@ export async function action({ request }: ActionFunctionArgs) {
 
 export default function BuyerProfilePage() {
   const profile = useLoaderData() as BuyerProfileType;
+  const wishlist = [
+    { id: "w1", title: "Blue Train", artist: "John Coltrane" },
+    { id: "w2", title: "In Rainbows", artist: "Radiohead" },
+  ];
+  const orders = [
+    { id: "o1", title: "Kind of Blue", date: "2024-05-20", status: "Shipped" },
+  ];
 
   return (
     <div className="container max-w-4xl space-y-8 py-8">
@@ -89,6 +96,27 @@ export default function BuyerProfilePage() {
                 />
                 <Button type="submit">I'm Interested</Button>
               </Form>
+            </Card>
+          ))}
+        </ul>
+
+        <h2 className="text-2xl font-semibold">Wishlist</h2>
+        <ul className="space-y-2">
+          {wishlist.map((w) => (
+            <Card key={w.id} className="p-3 flex justify-between">
+              <span>
+                {w.title} - {w.artist}
+              </span>
+            </Card>
+          ))}
+        </ul>
+
+        <h2 className="text-2xl font-semibold">Order History</h2>
+        <ul className="space-y-2">
+          {orders.map((o) => (
+            <Card key={o.id} className="p-3 flex justify-between">
+              <span>{o.title}</span>
+              <span className="text-sm text-gray-500">{o.date} - {o.status}</span>
             </Card>
           ))}
         </ul>

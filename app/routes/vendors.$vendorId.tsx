@@ -83,7 +83,15 @@ export default function VendorStorefront() {
         <p className="text-gray-600 dark:text-gray-300 mx-auto max-w-xl">
           {vendor.description}
         </p>
+        <Button className="mt-2">Contact Shop</Button>
       </header>
+      <section className="max-w-xl mx-auto text-sm text-gray-700 space-y-2">
+        <h2 className="text-lg font-semibold">About this Shop</h2>
+        <p>
+          We specialize in carefully curated pressings and ship worldwide. Follow
+          us for updates on new arrivals and limited releases.
+        </p>
+      </section>
       <section className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-6">
         {vendor.records.map((record) => (
           <Card

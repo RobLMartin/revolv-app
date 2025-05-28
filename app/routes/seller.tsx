@@ -24,10 +24,26 @@ export async function action({ request }: ActionFunctionArgs) {
 
 export default function Seller() {
   const { records } = useLoaderData() as Awaited<ReturnType<typeof loader>>;
+  const stats = { sales: 12, pending: 3 };
+  const pendingOrders = [
+    { id: "p1", title: "Blue Train", buyer: "Alice" },
+    { id: "p2", title: "Abbey Road", buyer: "Bob" },
+  ];
 
   return (
     <main className="container max-w-4xl space-y-8 py-8">
       <h1 className="text-3xl font-bold tracking-tight">Seller Dashboard</h1>
+
+      <section className="grid grid-cols-2 gap-4">
+        <Card className="p-4 text-center">
+          <p className="text-sm text-gray-500">Total Sales</p>
+          <p className="text-2xl font-semibold">{stats.sales}</p>
+        </Card>
+        <Card className="p-4 text-center">
+          <p className="text-sm text-gray-500">Pending Orders</p>
+          <p className="text-2xl font-semibold">{stats.pending}</p>
+        </Card>
+      </section>
       <Card>
         <Form method="post" className="space-y-4">
           <div>
@@ -56,6 +72,22 @@ export default function Seller() {
                 <p className="font-medium">{record.title}</p>
                 <p className="text-sm text-gray-600">${record.price.toFixed(2)}</p>
                 <p className="text-sm text-gray-500">{record.description}</p>
+              </Card>
+            ))}
+          </ul>
+        )}
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Pending Orders</h2>
+        {pendingOrders.length === 0 ? (
+          <p>No pending orders.</p>
+        ) : (
+          <ul className="space-y-2">
+            {pendingOrders.map((o) => (
+              <Card key={o.id} className="flex justify-between p-3">
+                <span>{o.title}</span>
+                <span className="text-sm text-gray-500">{o.buyer}</span>
               </Card>
             ))}
           </ul>

@@ -3,6 +3,7 @@ import type { Route } from "./+types/cart";
 import { getCart, removeFromCart, clearCart, addToCart } from "~/utils/cart";
 import { records } from "~/data/records";
 import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
 import { Card } from "~/ui/card";
 
 export function loader() {
@@ -59,12 +60,22 @@ export default function Cart() {
             ))}
           </ul>
           <div className="text-right font-semibold">Total: ${total.toFixed(2)}</div>
-          <Form method="post">
-            <input type="hidden" name="intent" value="checkout" />
-            <Button className="mt-4" type="submit">
-              Checkout
-            </Button>
-          </Form>
+
+          <div className="border rounded-md p-4 space-y-2">
+            <h2 className="text-lg font-medium">Shipping</h2>
+            <Input placeholder="Name" />
+            <Input placeholder="Address" />
+          </div>
+
+          <div className="flex justify-between items-center mt-4">
+            <a href="/records" className="text-sm text-blue-600 underline">
+              Continue Shopping
+            </a>
+            <Form method="post">
+              <input type="hidden" name="intent" value="checkout" />
+              <Button type="submit">Checkout</Button>
+            </Form>
+          </div>
         </>
       )}
     </main>

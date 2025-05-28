@@ -37,7 +37,7 @@ export default function Records() {
             <h2 className="font-semibold">{record.title}</h2>
             <p className="text-sm text-gray-500">{record.artist}</p>
             <p className="font-medium">${record.price.toFixed(2)}</p>
-            <Form method="post" action="/cart">
+            <Form method="post" action="/app/cart">
               <input type="hidden" name="intent" value="add" />
               <input type="hidden" name="recordId" value={record.id} />
               <Button type="submit" className="mt-2 w-full">

@@ -12,11 +12,11 @@ import {
 import { cn } from "../lib/utils";
 
 const navItems = [
-  { to: "/", label: "Home", icon: Home },
-  { to: "/records", label: "Records", icon: Catalog },
-  { to: "/cart", label: "Cart", icon: ShoppingCart },
-  { to: "/buyer", label: "Buyer", icon: UserAvatar },
-  { to: "/seller", label: "Seller", icon: User },
+  { to: "/app", label: "Home", icon: Home },
+  { to: "/app/records", label: "Records", icon: Catalog },
+  { to: "/app/cart", label: "Cart", icon: ShoppingCart },
+  { to: "/app/buyer", label: "Buyer", icon: UserAvatar },
+  { to: "/app/seller", label: "Seller", icon: User },
   { to: "/signin", label: "Sign In", icon: Login },
   { to: "/signup", label: "Sign Up", icon: UserFollow },
 ];
@@ -25,10 +25,11 @@ export function Sidebar() {
   const location = useLocation();
   return (
     <aside className="hidden h-screen w-64 shrink-0 border-r bg-white/70 p-4 md:block">
+      <div className="mb-4 px-3 text-xl font-bold">Revolv</div>
       <nav className="grid gap-1 text-sm font-medium">
         {navItems.map((item) => {
           const Icon = item.icon;
-          const active = location.pathname === item.to;
+          const active = location.pathname.startsWith(item.to);
           return (
             <Link
               key={item.to}

@@ -68,7 +68,7 @@ export default function Cart() {
           </div>
 
           <div className="flex justify-between items-center mt-4">
-            <a href="/records" className="text-sm text-blue-600 underline">
+            <a href="/app/records" className="text-sm text-blue-600 underline">
               Continue Shopping
             </a>
             <Form method="post">

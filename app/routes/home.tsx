@@ -48,7 +48,7 @@ export default function Home() {
       <section className="space-y-4 text-center">
         <h1 className="text-5xl font-extrabold tracking-tight">Find Your Next Spin</h1>
         <p className="text-gray-600">Curated selections from collectors around the world.</p>
-        <Link to="/records">
+        <Link to="/app/records">
           <Button>Browse Records</Button>
         </Link>
       </section>

@@ -19,7 +19,7 @@ export async function action({ request }: ActionFunctionArgs) {
     description: String(formData.get("description")),
   };
   addRecord(record);
-  return redirect("/seller");
+  return redirect("/app/seller");
 }
 
 export default function Seller() {
